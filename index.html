@@ -863,8 +863,8 @@
     /* ── Mobile: 680px ── */
     @media (max-width: 680px) {
 
-      /* Topnav */
-      .topnav { padding: 0 14px; height: 52px; }
+      /* ── Topnav ── */
+      .topnav { padding: 0 12px; height: 50px; }
       .topnav-divider, .topnav-section { display: none; }
       .topnav-logo-icon { width: 28px; height: 28px; }
       .topnav-title { font-size: 13px; }
@@ -872,82 +872,238 @@
       .user-chip-name { font-size: 11px; }
       .user-avatar { width: 28px; height: 28px; font-size: 10px; }
       .mob-menu-btn { display: flex; }
+      .notif-dropdown { right: -60px; width: 280px; }
 
-      /* Sidebar — slide-in drawer on mobile */
+      /* ── Sidebar drawer ── */
       .dash-body { grid-template-columns: 1fr; }
       .dash-sidebar {
-        position: fixed;
-        top: 52px; left: 0; bottom: 0;
+        position: fixed; top: 50px; left: 0; bottom: 0;
         width: 240px; z-index: 150;
         transform: translateX(-100%);
         transition: transform 0.25s ease;
         box-shadow: 4px 0 24px rgba(0,0,0,0.18);
       }
-      .dash-sidebar.mob-open {
-        transform: translateX(0);
-      }
+      .dash-sidebar.mob-open { transform: translateX(0); }
 
-      /* Main content full width */
-      .dash-main { padding: 16px 14px 80px; }
-
-      /* Page header stack */
+      /* ── Dashboard main ── */
+      .dash-main { padding: 14px 12px 80px; }
       .page-header { flex-direction: column; align-items: flex-start; gap: 10px; }
       .page-header h2 { font-size: 18px; }
       .page-header .btn { width: 100%; justify-content: center; }
 
-      /* KPI cards 2x2 */
+      /* ── KPI + Charts ── */
       .kpi-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
       .kpi-val { font-size: 22px; }
       .kpi-icon { font-size: 18px; }
       .kpi-card { padding: 12px 12px 8px; }
-
-      /* Charts single column */
       .charts-row { grid-template-columns: 1fr; gap: 10px; }
       .charts-row .card[style*="span 2"] { grid-column: span 1 !important; }
       .chart-card, .chart-card-sm { min-height: 160px; }
 
-      /* Tables — horizontal scroll */
+      /* ── Archive/inbox tables ── */
+      .data-table { min-width: 500px; font-size: 11px; }
+      .data-table th, .data-table td { padding: 7px 8px; }
       .card-body { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      .data-table { min-width: 520px; font-size: 11px; }
-      .data-table th, .data-table td { padding: 8px 10px; }
 
-      /* Stats row */
-      .stats-row { grid-template-columns: 1fr 1fr; }
+      /* ── Modals ── */
+      .modal-box { width: calc(100vw - 24px); max-height: 88vh; overflow-y: auto; }
 
-      /* Form view */
-      #view-form { padding: 16px 12px 60px; }
-      .eval-table { min-width: 700px; }
-      #view-form .card-body { overflow-x: auto; }
-      .section { padding: 14px 12px; }
-
-      /* Buttons */
-      .actions-bar { padding: 10px 14px; gap: 8px; flex-wrap: wrap; }
-      .actions-bar .btn { font-size: 11px; padding: 7px 12px; }
-
-      /* Modals */
-      .modal-box { width: calc(100vw - 28px); max-height: 90vh; overflow-y: auto; }
-
-      /* User cards */
+      /* ── User management ── */
       .user-grid { grid-template-columns: 1fr; }
 
-      /* Login */
-      .login-card { padding: 28px 20px; }
-      .login-logo-icon { width: 44px; height: 44px; }
+      /* ── Login ── */
+      .login-card { padding: 28px 18px; }
+
+      /* ════════════════════════════════
+         EVALUATION FORM — MOBILE
+         ════════════════════════════════ */
+      #view-form { padding: 0 0 80px; background: var(--surface); }
+
+      /* Context banner */
+      .form-context-banner {
+        padding: 10px 14px; gap: 8px;
+        flex-wrap: wrap;
+      }
+      .fcb-left { gap: 8px; }
+      .fcb-role { font-size: 10px; }
+      .fcb-user { font-size: 11px; }
+      .fcb-right { flex-wrap: wrap; gap: 6px; }
+      .fcb-session-id { font-size: 9px; }
+
+      /* Form page container */
+      .page { padding: 0; }
+      .form-header {
+        flex-direction: column; gap: 10px;
+        padding: 14px 14px 12px;
+        align-items: flex-start;
+      }
+      .form-eyebrow { font-size: 8px; }
+      .form-header h1 { font-size: 16px; }
+      .header-right { width: 100%; flex-direction: row; gap: 10px; align-items: center; }
+      .score-pill { font-size: 11px; padding: 5px 10px; }
+      .completion-bar-wrap { flex: 1; }
+
+      /* Sections */
+      .form-body { gap: 0; }
+      .section { padding: 14px; margin-bottom: 2px; border-radius: 0; border-left: none; border-right: none; }
+      .section-label { font-size: 9px; margin-bottom: 10px; }
+
+      /* Info grid: single column */
+      .info-grid { grid-template-columns: 1fr !important; gap: 8px; }
+      .info-grid .span-2 { grid-column: span 1 !important; }
+      .field-input { font-size: 13px; padding: 8px 10px; }
+      .field-label { font-size: 9px; }
+
+      /* Panel grid: single column */
+      .panel-grid { grid-template-columns: 1fr !important; gap: 8px; }
+      .interviewer-card { padding: 10px; }
+
+      /* Score guide: 2 cols */
+      .score-guide-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+      .score-guide-item { padding: 7px 8px; font-size: 10px; }
+
+      /* ── Evaluation matrix table ── */
+      .eval-table-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -14px;
+        padding: 0 14px;
+      }
+      .eval-table {
+        min-width: 600px;
+        font-size: 10.5px;
+      }
+      .eval-table col.c-cat  { width: 80px; }
+      .eval-table col.c-q    { width: 160px; }
+      .eval-table col.c-score{ width: 52px; }
+      .eval-table col.c-avg  { width: 44px; }
+      .eval-table col.c-notes{ width: 100px; }
+      .eval-table col.c-ctrl { width: 28px; }
+      .eval-table thead th { padding: 7px 5px; font-size: 9px; }
+      .eval-table td { padding: 6px 5px; }
+      .score-input { font-size: 13px; padding: 4px 2px; }
+      .q-topic-input { font-size: 11px; }
+      .q-text-input { font-size: 10px; }
+      .cat-input { font-size: 10px; }
+      .btn-add-row { font-size: 10px; padding: 6px 8px; }
 
       /* Result options */
-      .result-options { grid-template-columns: 1fr; }
+      .result-grid, .result-options { grid-template-columns: 1fr 1fr !important; gap: 6px; }
+      .result-option { padding: 8px 10px; font-size: 11px; }
 
-      /* Score guide */
-      .score-guide-grid { grid-template-columns: 1fr 1fr; }
+      /* Alt role */
+      #inp-altrole { font-size: 13px; }
+
+      /* Comments */
+      .comments-grid { grid-template-columns: 1fr !important; gap: 10px; }
+      .comment-block textarea { font-size: 12px; min-height: 70px; }
+
+      /* Signature grid */
+      .sig-grid { grid-template-columns: 1fr !important; gap: 10px; }
+      .sig-card { padding: 10px; }
+      .sig-input { font-size: 12px; }
+
+      /* Submit section */
+      #submit-section { margin: 0; border-radius: 0; padding: 14px; }
+
+      /* Actions bar */
+      .actions-bar {
+        padding: 10px 14px; gap: 8px;
+        flex-wrap: wrap; position: sticky; bottom: 0;
+        background: #fff; border-top: 1px solid var(--rule);
+        box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+      }
+      .actions-bar .btn { flex: 1; min-width: 100px; justify-content: center; font-size: 11px; padding: 8px 10px; }
     }
 
-    /* ── Small phones: 400px ── */
+    /* ── Small phones ── */
     @media (max-width: 400px) {
       .kpi-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-      .kpi-val { font-size: 20px; }
+      .kpi-val { font-size: 18px; }
       .topnav-title { display: none; }
+      .result-grid, .result-options { grid-template-columns: 1fr !important; }
     }
 
+
+
+
+    /* ── Mobile eval row cards (shown on small screens) ── */
+    .mob-rows-container { display: none; } /* hidden on desktop */
+
+    .mob-section-header {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--ink-light);
+      padding: 10px 0 6px; margin-top: 6px;
+      border-bottom: 2px solid var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .mob-eval-card {
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: var(--r-lg);
+      padding: 12px 14px;
+      margin-bottom: 8px;
+      box-shadow: 0 1px 4px rgba(30,58,95,0.06);
+    }
+    .mob-card-topic {
+      font-size: 12px; font-weight: 700; color: var(--ink);
+      margin-bottom: 3px;
+    }
+    .mob-card-question {
+      font-size: 11px; color: var(--ink-mid);
+      margin-bottom: 10px; line-height: 1.4;
+    }
+    .mob-card-scores {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .mob-score-box {
+      display: flex; flex-direction: column; align-items: center;
+      background: var(--surface); border-radius: var(--r);
+      padding: 6px 4px;
+    }
+    .mob-score-label {
+      font-size: 8px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--ink-light);
+      margin-bottom: 4px;
+    }
+    .mob-score-box input[type=number] {
+      width: 44px; text-align: center;
+      border: 1px solid var(--rule); border-radius: var(--r);
+      font-size: 14px; font-weight: 700; color: var(--accent);
+      padding: 4px 2px; background: #fff;
+      -moz-appearance: textfield;
+    }
+    .mob-score-box input::-webkit-outer-spin-button,
+    .mob-score-box input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .mob-score-avg {
+      font-size: 16px; font-weight: 800; color: var(--accent-2);
+      line-height: 1;
+    }
+    .mob-card-notes textarea {
+      width: 100%; border: 1px solid var(--rule); border-radius: var(--r);
+      padding: 6px 8px; font-size: 11px; color: var(--ink);
+      resize: vertical; min-height: 32px;
+      font-family: inherit; background: #fff;
+    }
+    .mob-card-del {
+      display: flex; justify-content: flex-end; margin-top: 6px;
+    }
+    .mob-add-row-btn {
+      width: 100%; padding: 9px; border: 1.5px dashed var(--rule);
+      border-radius: var(--r-lg); background: transparent;
+      color: var(--ink-mid); font-size: 11px; font-weight: 600;
+      cursor: pointer; margin-top: 4px; margin-bottom: 12px;
+    }
+    .mob-add-row-btn:hover { border-color: var(--accent-3); color: var(--accent-2); }
+    .mob-subtotal {
+      text-align: right; font-size: 11px; font-weight: 700;
+      color: var(--accent); padding: 6px 0;
+      border-top: 1px solid var(--rule); margin-top: 4px;
+    }
 </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 </head>
@@ -1269,6 +1425,7 @@
       <!-- 4. Evaluation Matrix -->
       <div class="section">
         <div class="section-label">Evaluation Matrix</div>
+        <div class="eval-table-wrap" style="overflow-x:auto;">
         <table class="eval-table">
           <colgroup>
             <col class="c-cat"/><col class="c-q"/>
@@ -1289,7 +1446,8 @@
           </thead>
           <tbody id="eval-tbody"></tbody>
         </table>
-      </div>
+        </div><!-- /eval-table-wrap -->
+      </div><!-- /section eval matrix -->
 
       <!-- 5. Interview Result -->
       <div class="section">
@@ -2244,6 +2402,9 @@ async function renderArchive(container) {
             ${renderArchiveRows(visible)}
           </tbody>
         </table>
+        </div><!-- /eval-table-wrap -->
+
+        <!-- Mobile card view (shown via CSS on small screens) -->
       </div>
     </div>
   `;
@@ -2579,6 +2740,7 @@ function openNewEvalForm() {
     try {
       initForm(null);
       setupFormContext('hr', null);
+      buildMobCards();
     } catch(err) {
       console.error('New eval form ERROR:', err);
     }
@@ -2605,7 +2767,10 @@ async function openEvalForReview(evalId) {
     CURRENT_EVAL = evals.find(e => e.id === evalId) || null;
     showView('view-form');
     setTimeout(() => {
-      try { initForm(CURRENT_EVAL); setupFormContext(CURRENT_USER.role, CURRENT_EVAL?.id || evalId); }
+      try {
+        initForm(CURRENT_EVAL);
+        setupFormContext(CURRENT_USER.role, CURRENT_EVAL?.id || evalId);
+        }
       catch(e) { console.error('Form init:', e); }
     }, 0);
   } catch(err) {
@@ -3149,6 +3314,7 @@ window.viewArchiveDetail = viewArchiveDetail;
 window.openEditUser      = openEditUser;
 window.deleteUser        = deleteUser;
 window.showSection       = showSection;
+
 
 
 // ── Mobile menu toggle ──
