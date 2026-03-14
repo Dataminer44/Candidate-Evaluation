@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Candidate Evaluation System</title>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap");
@@ -830,15 +830,124 @@
     .chart-card { min-height: 200px; }
     .chart-card-sm { min-height: 180px; }
 
+
+    /* ═══════════════════════════════════════════════════
+       RESPONSIVE / MOBILE
+    ═══════════════════════════════════════════════════ */
+
+    /* Hamburger button — hidden on desktop */
+    .mob-menu-btn {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      padding: 6px; border-radius: var(--r);
+      color: #fff;
+    }
+    .mob-menu-btn svg { display: block; }
+
+    /* Sidebar overlay backdrop */
+    .sidebar-backdrop {
+      display: none;
+      position: fixed; inset: 0; z-index: 149;
+      background: rgba(0,0,0,0.4);
+    }
+    .sidebar-backdrop.open { display: block; }
+
+    /* ── Tablet: 900px ── */
     @media (max-width: 900px) {
       .kpi-grid { grid-template-columns: repeat(2, 1fr); }
       .charts-row { grid-template-columns: 1fr; }
       .charts-row .card[style*="span 2"] { grid-column: span 1 !important; }
+      .dash-main { padding: 20px 18px; }
     }
-    @media (max-width: 600px) {
-      .kpi-grid { grid-template-columns: 1fr 1fr; }
+
+    /* ── Mobile: 680px ── */
+    @media (max-width: 680px) {
+
+      /* Topnav */
+      .topnav { padding: 0 14px; height: 52px; }
+      .topnav-divider, .topnav-section { display: none; }
+      .topnav-logo-icon { width: 28px; height: 28px; }
+      .topnav-title { font-size: 13px; }
+      .user-chip-role { display: none; }
+      .user-chip-name { font-size: 11px; }
+      .user-avatar { width: 28px; height: 28px; font-size: 10px; }
+      .mob-menu-btn { display: flex; }
+
+      /* Sidebar — slide-in drawer on mobile */
+      .dash-body { grid-template-columns: 1fr; }
+      .dash-sidebar {
+        position: fixed;
+        top: 52px; left: 0; bottom: 0;
+        width: 240px; z-index: 150;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        box-shadow: 4px 0 24px rgba(0,0,0,0.18);
+      }
+      .dash-sidebar.mob-open {
+        transform: translateX(0);
+      }
+
+      /* Main content full width */
+      .dash-main { padding: 16px 14px 80px; }
+
+      /* Page header stack */
+      .page-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .page-header h2 { font-size: 18px; }
+      .page-header .btn { width: 100%; justify-content: center; }
+
+      /* KPI cards 2x2 */
+      .kpi-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
       .kpi-val { font-size: 22px; }
+      .kpi-icon { font-size: 18px; }
+      .kpi-card { padding: 12px 12px 8px; }
+
+      /* Charts single column */
+      .charts-row { grid-template-columns: 1fr; gap: 10px; }
+      .charts-row .card[style*="span 2"] { grid-column: span 1 !important; }
+      .chart-card, .chart-card-sm { min-height: 160px; }
+
+      /* Tables — horizontal scroll */
+      .card-body { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .data-table { min-width: 520px; font-size: 11px; }
+      .data-table th, .data-table td { padding: 8px 10px; }
+
+      /* Stats row */
+      .stats-row { grid-template-columns: 1fr 1fr; }
+
+      /* Form view */
+      #view-form { padding: 16px 12px 60px; }
+      .eval-table { min-width: 700px; }
+      #view-form .card-body { overflow-x: auto; }
+      .section { padding: 14px 12px; }
+
+      /* Buttons */
+      .actions-bar { padding: 10px 14px; gap: 8px; flex-wrap: wrap; }
+      .actions-bar .btn { font-size: 11px; padding: 7px 12px; }
+
+      /* Modals */
+      .modal-box { width: calc(100vw - 28px); max-height: 90vh; overflow-y: auto; }
+
+      /* User cards */
+      .user-grid { grid-template-columns: 1fr; }
+
+      /* Login */
+      .login-card { padding: 28px 20px; }
+      .login-logo-icon { width: 44px; height: 44px; }
+
+      /* Result options */
+      .result-options { grid-template-columns: 1fr; }
+
+      /* Score guide */
+      .score-guide-grid { grid-template-columns: 1fr 1fr; }
     }
+
+    /* ── Small phones: 400px ── */
+    @media (max-width: 400px) {
+      .kpi-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .kpi-val { font-size: 20px; }
+      .topnav-title { display: none; }
+    }
+
 </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 </head>
@@ -926,6 +1035,12 @@
   <!-- TOP NAV -->
   <nav class="topnav">
     <div class="topnav-left">
+      <!-- Hamburger (mobile only) -->
+      <button class="mob-menu-btn" id="mob-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
       <div class="topnav-logo">
         <div class="topnav-logo-icon">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
@@ -987,7 +1102,7 @@
   <div class="dash-body">
 
     <!-- SIDEBAR -->
-    <aside class="dash-sidebar">
+    <aside class="dash-sidebar" id="dash-sidebar">
       <div class="sidebar-section-label">Main</div>
       <div class="sidebar-item active" id="nav-overview" onclick="showSection('overview')">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1033,6 +1148,9 @@
         User Management
       </div>
     </aside>
+
+    <!-- Mobile sidebar backdrop -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop" onclick="toggleMobileMenu(false)"></div>
 
     <!-- MAIN -->
     <main class="dash-main" id="dash-main-content">
@@ -1710,6 +1828,7 @@ async function markAllRead() {
 ══════════════════════════════════════════════════════════════ */
 function showSection(section) {
   CURRENT_SECTION = section;
+  toggleMobileMenu(false); // close on mobile
   // Update sidebar active state
   document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
   const navEl = el('nav-' + section);
@@ -3023,6 +3142,7 @@ function serverTimestampPlaceholder() { return new Date().toISOString(); }
 
 // Make key functions globally accessible for onclick in dynamic HTML
 window.openEvalForReview = openEvalForReview;
+window.toggleMobileMenu  = toggleMobileMenu;
 window.openEvalForEdit   = openEvalForEdit;
 window.openSendModal     = openSendModal;
 window.viewArchiveDetail = viewArchiveDetail;
@@ -3030,6 +3150,20 @@ window.openEditUser      = openEditUser;
 window.deleteUser        = deleteUser;
 window.showSection       = showSection;
 
+
+// ── Mobile menu toggle ──
+function toggleMobileMenu(forceClose) {
+  const sidebar  = el('dash-sidebar');
+  const backdrop = el('sidebar-backdrop');
+  if (!sidebar) return;
+  const isOpen = sidebar.classList.contains('mob-open');
+  const shouldOpen = forceClose === false ? false : (forceClose === true ? true : !isOpen);
+  sidebar.classList.toggle('mob-open', shouldOpen);
+  if (backdrop) backdrop.classList.toggle('open', shouldOpen);
+  document.body.style.overflow = shouldOpen ? 'hidden' : '';
+}
+
+// Close mobile menu on section change (mobile)
 async function boot() {
   // Seed demo accounts — write to Firestore if available
   const existingUsers = await DB.getUsers();
